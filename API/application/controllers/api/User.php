@@ -85,19 +85,19 @@ class User extends REST_Controller {
     public function user_post()
     {
         // Add a new user
-        $clear_password=$this->post('password');
+        $clear_password=$this->post('PIN');
         $encrypted_pass = password_hash($clear_password,PASSWORD_DEFAULT);
         $add_data=array(
-          'username'=>$this->post('username'),
-          'password'=>$encrypted_pass
+          'idTili'=>$this->post('idTili'),
+          'PIN'=>$encrypted_pass
         );
         $insert_id=$this->User_model->add_user($add_data);
         if($insert_id)
         {
             $message = [
                 'id_user' => $insert_id,
-                'username' => $this->post('username'),
-                'password' => $this->post('password'),
+                'idTili' => $this->post('idTili'),
+                'PIN' => $this->post('PIN'),
                 'message' => 'Added a resource'
             ];
             $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
@@ -116,20 +116,20 @@ class User extends REST_Controller {
     {
         // Update the user
         $id=$this->get('id');
-        $clear_password=$this->post('password');
+        $clear_password=$this->post('PIN');
         $encrypted_pass = password_hash($clear_password,PASSWORD_DEFAULT);
         $update_data=array(
-          'username'=>$this->post('username'),
-          'password'=>$encrypted_pass
+          'idTili'=>$this->post('idTili'),
+          'PIN'=>$encrypted_pass
         );
         $result=$this->User_model->update_user($id, $update_data);
 
         if($result)
         {
           $message = [
-              'id_user' => $insert_id,
-              'username' => $this->post('username'),
-              'password' => $this->post('password'),
+              'idDebit' => $insert_id,
+              'idTili' => $this->post('idTili'),
+              'PIN' => $this->post('PIN'),
               'message' => 'Added a resource'
           ];
 
@@ -159,7 +159,7 @@ class User extends REST_Controller {
         if ($result)
         {
           $message = [
-              'id_user' => $id,
+              'idDebit' => $id,
               'message' => 'Deleted the resource'
           ];
           $this->set_response($message, REST_Controller::HTTP_OK);
