@@ -6,6 +6,7 @@
 
 QT       += core gui
 QT       += sql
+QT += network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -28,7 +29,6 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    dbconnect.cpp \
     signin.cpp
 
 HEADERS += \
