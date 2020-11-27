@@ -17,14 +17,14 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 //$sql = "SELECT idTapahtuma, Pvm, Tapahtuma FROM Tapahtuma";
-$sql = "SELECT idTili, Tilinumero, Haltija, Saldo, idTapahtuma FROM Tili";
+$sql = "SELECT idKortti, Haltija, idCredit, idDebit, CVV, Korttinumero, PIN FROM Kortti";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
   // output data of each row
   while($row = mysqli_fetch_assoc($result)) {
     //echo "idTapahtuma: " . $row["idTapahtuma"]. " - Pvm: " . $row["Pvm"]. " Tapahtuma: " . $row["Tapahtuma"]. "<br>";
-    echo "[Tili]: " . $row["idTili"]. " - [Tilinumero]: " . $row["Tilinumero"]. " - [Haltija]: " . $row["Haltija"]. " - [Saldo]: " . $row["Saldo"]. " - [id]: " . $row["idTapahtuma"]. "<br>";
+    echo "[idKortti]: " . $row["idKortti"]. " - [Haltija]: " . $row["Haltija"]. " - [idCredit]: " . $row["idCredit"]. " - [idDebit]: " . $row["idDebit"]. " - [CVV]: " . $row["CVV"]. " - [Korttinumero]: " . $row["Korttinumero"]. " - [PIN]: " . $row["PIN"]. "<br>";
   }
 } else {
   echo "0 results";

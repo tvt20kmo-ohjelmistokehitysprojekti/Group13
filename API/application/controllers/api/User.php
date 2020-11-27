@@ -88,7 +88,12 @@ class User extends REST_Controller {
         $clear_password=$this->post('PIN');
         $encrypted_pass = password_hash($clear_password,PASSWORD_DEFAULT);
         $add_data=array(
-          'idTili'=>$this->post('idTili'),
+          'idKortti'=>$this->post('idKortti'),
+          'Haltija'=>$this->post('Haltija'),
+          'idCredit'=>$this->post('idCredit'),
+          'idDebit'=>$this->post('idDebit'),
+          'CVV'=>$this->post('CVV'),
+          'Korttinumero'=>$this->post('Korttinumero'),
           'PIN'=>$encrypted_pass
         );
         $insert_id=$this->User_model->add_user($add_data);
@@ -96,7 +101,12 @@ class User extends REST_Controller {
         {
             $message = [
                 'id_user' => $insert_id,
-                'idTili' => $this->post('idTili'),
+                'idKortti' => $this->post('idKortti'),
+                'Haltija' => $this->post('Haltija'),
+                'idCredit' => $this->post('idCredit'),
+                'idDebit' => $this->post('idDebit'),
+                'CVV' => $this->post('CVV'),
+                'Korttinumero' => $this->post('Korttinumero'),
                 'PIN' => $this->post('PIN'),
                 'message' => 'Added a resource'
             ];
@@ -119,7 +129,7 @@ class User extends REST_Controller {
         $clear_password=$this->post('PIN');
         $encrypted_pass = password_hash($clear_password,PASSWORD_DEFAULT);
         $update_data=array(
-          'idTili'=>$this->post('idTili'),
+          'Korttinumero'=>$this->post('Korttinumero'),
           'PIN'=>$encrypted_pass
         );
         $result=$this->User_model->update_user($id, $update_data);
@@ -127,8 +137,8 @@ class User extends REST_Controller {
         if($result)
         {
           $message = [
-              'idDebit' => $insert_id,
-              'idTili' => $this->post('idTili'),
+              'id_user' => $insert_id,
+              'Korttinumero' => $this->post('Korttinumero'),
               'PIN' => $this->post('PIN'),
               'message' => 'Added a resource'
           ];
@@ -159,7 +169,7 @@ class User extends REST_Controller {
         if ($result)
         {
           $message = [
-              'idDebit' => $id,
+              'id_user' => $id,
               'message' => 'Deleted the resource'
           ];
           $this->set_response($message, REST_Controller::HTTP_OK);
