@@ -37,15 +37,22 @@ void signin::on_btnLogin_clicked()
  * @return false as default, true if sign in is succesful
  */
 bool signin::parseResult(QString user, QString pin){
-
+    qDebug() << "User: " + user + ", pin: " + pin;
     QNetworkAccessManager networkManager;
     QUrl url("http://localhost/API/index.php/api/Login/check_login/?card_id="+user+"&card_pin="+pin);
     QNetworkRequest request;
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     request.setUrl(url);
 
-    QNetworkReply* currentReply = networkManager.get(request);
+    QNetworkReply *currentReply = networkManager.get(request);
+
+    while (!currentReply->isFinished()){
+        qApp->processEvents();
+    }
 
     QByteArray currentResponse = currentReply->readAll();
+    qDebug() << "Response: " +currentResponse;
+
 
     if (currentResponse=="true"){
         return true;
