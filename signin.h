@@ -9,7 +9,6 @@
 #include <string>
 #include <QDebug>
 
-
 namespace Ui {
 class signin;
 }
@@ -17,6 +16,8 @@ class signin;
 class signin : public QWidget
 {
     Q_OBJECT
+signals:
+    void sendData(QString);
 
 public:
     explicit signin(QWidget *parent = nullptr);

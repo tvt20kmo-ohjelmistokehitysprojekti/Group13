@@ -33,8 +33,8 @@ SOURCES += \
 
 HEADERS += \
         mainwindow.h \
-    dbconnect.h \
-    signin.h
+    signin.h \
+    globalvars.h
 
 FORMS += \
         mainwindow.ui \

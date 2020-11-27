@@ -16,11 +16,14 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void receiveData(QString);
+
 private:
     Ui::MainWindow *ui;
 
-    int customerNumber;
-    signin *logIn = new signin;
+    QString customerNumber;
+    signin logIn;
 
 
 };

@@ -21,7 +21,10 @@ void signin::on_btnLogin_clicked()
     QString t_pin = ui->txtPin->text();
 
     if (parseResult(t_user, t_pin)==true){
-        ui->lblText->setText("OK");
+        connect(this, SIGNAL(sendData(QString)), this, SLOT(receiveData(QString)));
+        emit sendData(t_user);
+
+        this->close();
     }
     else {
         ui->lblText->setText("Väärä kortti tai PIN");
@@ -37,15 +40,22 @@ void signin::on_btnLogin_clicked()
  * @return false as default, true if sign in is succesful
  */
 bool signin::parseResult(QString user, QString pin){
-
+    qDebug() << "User: " + user + ", pin: " + pin;
     QNetworkAccessManager networkManager;
-    QUrl url("http://localhost/API/index.php/api/Login/check_login/?card_id="+user+"&card_pin="+pin);
+    QUrl url("http://localhost/API/index.php/api/Login/check_login/?Korttinumero="+user+"&PIN="+pin);
     QNetworkRequest request;
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     request.setUrl(url);
 
-    QNetworkReply* currentReply = networkManager.get(request);
+    QNetworkReply *currentReply = networkManager.get(request);
+
+    while (!currentReply->isFinished()){
+        qApp->processEvents();
+    }
 
     QByteArray currentResponse = currentReply->readAll();
+    qDebug() << "Response: " +currentResponse;
+
 
     if (currentResponse=="true"){
         return true;
