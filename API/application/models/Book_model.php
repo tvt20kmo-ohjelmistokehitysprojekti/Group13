@@ -6,14 +6,14 @@ class Book_model extends CI_model
 {
   function get_book($id){
     $this->db->select('*');
-    $this->db->from('Tili');
+    $this->db->from('Kortti');
     if($id !== NULL) {
-      $this->db->where('idTili',$id);
+      $this->db->where('Korttinumero',$id);
     }
     return $this->db->get()->result_array();
   }
   function add_book($add_data){
-    $this->db->insert('Tili',$add_data);
+    $this->db->insert('Kortti',$add_data);
     if($this->db->insert_id()!==NULL){
       return $this->db->insert_id(); 
     }
@@ -22,8 +22,8 @@ class Book_model extends CI_model
     }  
   }
   function update_book($id, $update_data){
-    $this->db->where('idTili',$id);
-    $this->db->update('Tili',$update_data);
+    $this->db->where('Korttinumero',$id);
+    $this->db->update('Korttinumero',$update_data);
     if($this->db->affected_rows()>0){
       return TRUE; 
     }
@@ -33,8 +33,8 @@ class Book_model extends CI_model
   }
 
   function delete_book($id){
-    $this->db->where('idTili',$id);
-    $this->db->delete('Tili');
+    $this->db->where('Korttinumero',$id);
+    $this->db->delete('Korttinumero');
     if($this->db->affected_rows()>0){
       return TRUE; 
     }
