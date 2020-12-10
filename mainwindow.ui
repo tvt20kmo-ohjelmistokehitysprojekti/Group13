@@ -6,21 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>223</width>
-    <height>536</height>
+    <width>526</width>
+    <height>303</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Bank ATM</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="btbWithdraw">
+   <widget class="QLabel" name="lblMessage">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>40</y>
-      <width>201</width>
-      <height>41</height>
+      <x>20</x>
+      <y>20</y>
+      <width>501</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -29,16 +29,16 @@
      </font>
     </property>
     <property name="text">
-     <string>Otto</string>
+     <string>Valitse toiminto</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnDeposit">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>90</y>
-      <width>201</width>
-      <height>41</height>
+      <x>20</x>
+      <y>60</y>
+      <width>491</width>
+      <height>171</height>
      </rect>
     </property>
     <property name="font">
@@ -46,27 +46,84 @@
       <pointsize>14</pointsize>
      </font>
     </property>
-    <property name="text">
-     <string>Pano</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnTransaction">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>140</y>
-      <width>201</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Tapahtumat</string>
-    </property>
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="0" column="0">
+      <widget class="QPushButton" name="lblBalance">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Saldotiedustelu</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="lblTransaction">
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Tapahtumat</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0" colspan="2">
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="lblWithdraw20">
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Nosta 20€</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="lblWithdraw40">
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Nosta 40€</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="lblWithdraw50">
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Nosta 50€</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="lblWithdraw100">
+         <property name="font">
+          <font>
+           <pointsize>14</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Nosta 100€</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -74,7 +131,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>223</width>
+     <width>526</width>
      <height>21</height>
     </rect>
    </property>
