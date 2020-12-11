@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -24,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
  * @param data Received card number
  */
 void MainWindow::receiveData(QString data){
+    this->show();
     customerNumber = data;
     ui->lblBalance->setEnabled(true);
     ui->lblMessage->setEnabled(true);
@@ -35,9 +37,85 @@ void MainWindow::receiveData(QString data){
     ui->lblMessage->setText(data);
 }
 
+bool MainWindow::withdraw(double sum)
+{
+    QByteArray postData;
+    postData.append("cardid="+customerNumber+"&");
+    postData.append("summa=" + QString::number(sum,'f', 2));
+
+    QNetworkAccessManager networkManager;
+    QUrl url("http://localhost/API/index.php/api/Withdraw/withdraw/");
+
+    QNetworkRequest request;
+    request.setUrl(url);
+
+    QNetworkReply* currentReply = networkManager.post(request,postData);
+
+
+    while (!currentReply->isFinished()){
+        qApp->processEvents();
+    }
+
+    QByteArray currentResponse = currentReply->readAll();
+
+    if (currentResponse=="1"){
+        return true;
+    }
+
+    return false;
+}
+
 MainWindow::~MainWindow()
 {
     delete ui;
 
 
+}
+
+void MainWindow::on_lblWithdraw20_clicked()
+{
+    if (withdraw(20.0) == true) {
+        QMessageBox::information(this, "INFO", "Nosto onnistunut.\nOle hyvä ja ota kortti pois koneesta.");
+        QCoreApplication::quit();
+    }
+    else
+    {
+        QMessageBox::information(this, "VIRHE", "Tapahtui virhe.\nOle hyvä ja koita uudelleen.");
+    }
+}
+
+void MainWindow::on_lblWithdraw40_clicked()
+{
+    if (withdraw(40.0) == true) {
+        QMessageBox::information(this, "INFO", "Nosto onnistunut.\nOle hyvä ja ota kortti pois koneesta.");
+        QCoreApplication::quit();
+    }
+    else
+    {
+        QMessageBox::information(this, "VIRHE", "Tapahtui virhe.\nOle hyvä ja koita uudelleen.");
+    }
+}
+
+void MainWindow::on_lblWithdraw50_clicked()
+{
+    if (withdraw(50.0) == true) {
+        QMessageBox::information(this, "INFO", "Nosto onnistunut.\nOle hyvä ja ota kortti pois koneesta.");
+        QCoreApplication::quit();
+    }
+    else
+    {
+        QMessageBox::information(this, "VIRHE", "Tapahtui virhe.\nOle hyvä ja koita uudelleen.");
+    }
+}
+
+void MainWindow::on_lblWithdraw100_clicked()
+{
+    if (withdraw(100.0) == true) {
+        QMessageBox::information(this, "INFO", "Nosto onnistunut.\nOle hyvä ja ota kortti pois koneesta.");
+        QCoreApplication::quit();
+    }
+    else
+    {
+        QMessageBox::information(this, "VIRHE", "Tapahtui virhe.\nOle hyvä ja koita uudelleen.");
+    }
 }
