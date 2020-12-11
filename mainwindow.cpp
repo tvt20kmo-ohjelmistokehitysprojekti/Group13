@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
  * @param data Received card number
  */
 void MainWindow::receiveData(QString data){
+    this->show();
     customerNumber = data;
     ui->lblBalance->setEnabled(true);
     ui->lblMessage->setEnabled(true);
