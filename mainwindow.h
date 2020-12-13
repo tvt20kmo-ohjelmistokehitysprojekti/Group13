@@ -29,6 +29,8 @@ private slots:
 
     void on_lblWithdraw100_clicked();
 
+    void on_lblBalance_clicked();
+
 private:
     bool withdraw(double sum);
     Ui::MainWindow *ui;

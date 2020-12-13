@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -118,4 +119,34 @@ void MainWindow::on_lblWithdraw100_clicked()
     {
         QMessageBox::information(this, "VIRHE", "Tapahtui virhe.\nOle hyvä ja koita uudelleen.");
     }
+}
+
+/**
+ * @brief MainWindow::on_lblBalance_clicked, gets the current balance
+ * of given card number
+ *
+ */
+void MainWindow::on_lblBalance_clicked()
+{
+    QNetworkAccessManager networkManager;
+    QUrl url("http://localhost/API/index.php/api/Balance/Getbalance/?Korttinumero="+customerNumber);
+    QNetworkRequest request;
+    request.setUrl(url);
+
+    QNetworkReply* currentReply = networkManager.get(request);
+
+    while (!currentReply->isFinished()){
+        qApp->processEvents();
+    }
+
+    QString currentResponse = currentReply->readAll();
+
+    if (currentResponse != NULL){
+        QMessageBox::information(this, "Saldo", "Saldo: ");
+
+    }
+
+
+
+
 }

@@ -29,16 +29,19 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    signin.cpp
+    signin.cpp \
+    transactions.cpp
 
 HEADERS += \
         mainwindow.h \
     dbconnect.h \
-    signin.h
+    signin.h \
+    transactions.h
 
 FORMS += \
         mainwindow.ui \
-    signin.ui
+    signin.ui \
+    transactions.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
